@@ -91,6 +91,12 @@ android {
         jniLibs {
             useLegacyPackaging = true
         }
+        resources {
+            excludes += setOf(
+                "META-INF/INDEX.LIST",
+                "META-INF/DEPENDENCIES"
+            )
+        }
     }
     ndkVersion = "28.0.13004108"
 }
@@ -110,4 +116,21 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+
+    // Прямая загрузка депо Project Zomboid (AppID 108600 / DepotID 108603) и Workshop-модов
+    implementation("in.dragonbra:javasteam:1.8.0")
+    implementation("in.dragonbra:javasteam-depotdownloader:1.8.0")
+
+    // Криптография, Protobuf и распаковка чанков SteamPipe (XZ / LZMA2 и ZSTD JNI AAR)
+    implementation("org.bouncycastle:bcprov-jdk18on:1.79")
+    implementation("com.google.protobuf:protobuf-java:4.29.2")
+    implementation("org.tukaani:xz:1.10")
+    implementation("com.github.luben:zstd-jni:1.5.6-8@aar")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
+
+    // Защищенное хранилище refresh-токенов Steam (AES256-GCM) и генератор QR-кодов входа
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
+    implementation("com.google.zxing:core:3.5.3")
+    implementation("androidx.core:core:1.13.1")
 }

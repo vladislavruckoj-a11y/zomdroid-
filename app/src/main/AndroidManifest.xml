@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:name=".ZomdroidApplication"
@@ -38,6 +39,15 @@
             android:name=".InstallerService"
             android:foregroundServiceType="dataSync">
         </service>
+        <activity
+            android:name="com.zomdroid.ui.InstanceSetupActivity"
+            android:exported="false"
+            android:label="Setup Zomboid Instance (No PC)" />
+        <service
+            android:name="com.zomdroid.steam.SteamDownloadModule$SteamDownloadService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
         <provider
             android:name=".AppStorageProvider"
             android:authorities="com.zomdroid.STORAGE_PROVIDER_AUTHORITY"
